@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# Definición de los salarios por profesión y experiencia
+declare -A salarios
+salarios["DEVOPS"]="45000 50000 50000 80000 80000 95000 85000 110000"
+salarios["HELPDESK"]="25000 32000 32000 40000 35000 48000 42000 60000"
+salarios["INGENIERO DE CIBERSEGURIDAD"]="28000 36000 36000 55000 55000 70000 70000 90000"
+salarios["INGENIERO DE DATOS"]="35000 45000 40000 68000 60000 80000 80000 100000"
+salarios["INGENIERO DE SOFTWARE"]="28000 35000 35000 65000 65000 72000 72000 85000"
+salarios["PROJECT MANAGER"]="45000 55000 50000 75000 75000 80000 80000 90000"
+salarios["TECNICO DE REDES"]="24000 32000 32000 50000 50000 68000 68000 75000"
+salarios["TECNICO DE SISTEMAS"]="25000 35000 35000 50000 50000 65000 60000 75000"
+
+echo "Bienvenido a la Calculadora de Salarios Tecnológicos de 2023."
+
+imprimir_profesiones() {
+    echo "Profesiones disponibles:"
+    idx=1
+    for profesion in "${!salarios[@]}"; do
+        echo "$idx. $profesion"
+        ((idx++))
+    done
+}
+
+imprimir_experiencia() {
+    echo "Intervalo de experiencia:"
+    echo "1. ≤ 2 años"
+    echo "2. 2-6 años"
+    echo "3. 6-10 años"
+    echo "4. 10 años"
+}
+
+calcular_salario() {
+    imprimir_profesiones
+
+    read -p "Elige tu profesión: " seleccion
+    if [[ $seleccion =~ ^[0-9]+$ ]] && (( seleccion >= 1 && seleccion <= ${#salarios[@]} )); then
+        idx=1
+        for profesion in "${!salarios[@]}"; do
+            if (( seleccion == idx )); then
+                echo "Tu profesión es: $profesion"
+
+                imprimir_experiencia
+                read -p "Elige tu intervalo de experiencia: " exp_seleccionada
+                if [[ $exp_seleccionada =~ ^[0-9]+$ ]] && (( exp_seleccionada >= 1 && exp_seleccionada <= 4 )); then
+                    index=$(( ($seleccion - 1) * 8 + $exp_seleccionada * 2 - 1 ))
+                    salario_min="${salarios[$profesion]:$index:1}"
+                    salario_max="${salarios[$profesion]:$((index + 1)):1}"
+                    echo "Tu salario estimado para $profesion con la experiencia que has elegido es entre $salario_min€ y $salario_max€."
+                    volver_menu
+                else
+                    echo "Elección no válida."
+                fi
+                break
+            fi
+            ((idx++))
+        done
+    else
+        echo "Elección no válida."
+    fi
+}
+
+volver_menu() {
+    read -p "¿Quieres regresar al menú? (s/n): " respuesta
+    if [[ $respuesta == [Ss] ]]; then
+        calcular_salario
+    elif [[ $respuesta == [Nn] ]]; then
+        echo "Gracias por usar la calculadora de salario, ¡hasta luego!"
+    else
+        echo "Opción inválida."
+        volver_menu
+    fi
+}
+
+calcular_salario
