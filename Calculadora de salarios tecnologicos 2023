@@ -11,7 +11,7 @@ salarios["TECNICO DE SISTEMAS"]="25000 35000 35000 50000 50000 65000 60000 75000
 echo "Bienvenido a la Calculadora de Salarios Tecnológicos de 2023."
 
 imprimir_profesiones() {
-    echo "Profesiones disponibles:"
+    echo "Profesiones:"
     idx=1
     for profesion in "${!salarios[@]}"; do
         echo "$idx. $profesion"
@@ -53,7 +53,7 @@ calcular_salario() {
             ((idx++))
         done
     else
-        echo "Elección no válida."
+        echo "Elección inválida."
     fi
 }
 
