@@ -1,6 +1,3 @@
-#!/bin/bash
-
-# Definición de los salarios por profesión y experiencia
 declare -A salarios
 salarios["DEVOPS"]="45000 50000 50000 80000 80000 95000 85000 110000"
 salarios["HELPDESK"]="25000 32000 32000 40000 35000 48000 42000 60000"
