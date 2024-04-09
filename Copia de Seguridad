@@ -1,9 +1,0 @@
-directorio="/ruta/al/directorio/a/copiar"
-
-directorio_copia="/ruta/al/directorio/de/respaldo"
-
-archivo="copia_$(date +"%Y-%m-%d").tar.gz"
-
-tar -czf "$directorio_copia/$archivo" "$directorio"
-
-echo "Se ha creado la copia en $directorio_copia/$archivo"
