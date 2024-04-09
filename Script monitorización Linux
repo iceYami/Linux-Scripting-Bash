@@ -4,7 +4,7 @@ SERVICIOS=("ssh" "apache2" "mysql")
 
 for servicio in "${SERVICIOS[@]}"; do
     if systemctl is-active --quiet "$servicio"; then
-        echo " $servicio está en funcionamiento. "
+        echo " $servicio está funcionando. "
     else
         echo " $servicio está caído."
     fi
