@@ -1,0 +1,34 @@
+#!/bin/bash
+
+echo "Bienvenido a mi perfil, soy iceYami."
+
+read -p "¿Desea continuar? (s/n): " respuesta
+
+if [ "$respuesta" == "n" ]; then
+    echo "Adiós."
+    exit 0
+elif [ "$respuesta" == "s" ]; then
+    echo "¡Continuemos!"
+    echo "Girando el tambor..."
+    
+    # Simular carga de la pistola (1 bala o 0 balas)
+    cargador=$(shuf -i 0-1 -n 1)
+    
+    if [ $cargador -eq 1 ]; then
+        echo "La pistola tiene una bala en el cargador."
+        echo "Apuntando..."
+        
+        # Generar porcentaje de acierto aleatorio
+        porcentaje_acierto=$(shuf -i 0-100 -n 1)
+        
+        if [ $porcentaje_acierto -eq 0 ]; then
+            echo "¡Has fallado! ¡La bala ha sido disparada!"
+        else
+            echo "¡Has sobrevivido! ¡La bala no estaba en esta posición!"
+        fi
+    else
+        echo "La pistola no tiene balas en el cargador. ¡Has tenido suerte!"
+    fi
+else
+    echo "Respuesta no válida."
+fi
