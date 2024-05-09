@@ -1,34 +1,31 @@
 #!/bin/bash
 
-echo "Bienvenido a mi perfil, soy iceYami."
+echo "¡Hola! Soy iceYami, bienvenido a mi perfil."
 
-read -p "¿Desea continuar? (s/n): " respuesta
+echo "¿Quieres jugar a un juego? (s/n)"
+read respuesta
 
-if [ "$respuesta" == "n" ]; then
-    echo "Adiós."
-    exit 0
-elif [ "$respuesta" == "s" ]; then
-    echo "¡Continuemos!"
-    echo "Girando el tambor..."
+if [ "$respuesta" == "s" ]; then
+    echo "¡Genial! Vamos a jugar a la ruleta rusa con una pistola Beretta."
+    echo "¡Click! ¡Click! ¡Click! (suena el tambor de la pistola)"
+
+    # Simular si hay una bala o no (50/50 de probabilidad)
+    bala=$(($RANDOM % 2))
     
-    # Simular carga de la pistola (1 bala o 0 balas)
-    cargador=$(shuf -i 0-1 -n 1)
-    
-    if [ $cargador -eq 1 ]; then
-        echo "La pistola tiene una bala en el cargador."
-        echo "Apuntando..."
+    if [ $bala -eq 1 ]; then
+        echo "¡Oh no! ¡Había una bala en el cargador!"
         
-        # Generar porcentaje de acierto aleatorio
-        porcentaje_acierto=$(shuf -i 0-100 -n 1)
+        # Generar un porcentaje de acierto aleatorio
+        acierto=$(($RANDOM % 101))
         
-        if [ $porcentaje_acierto -eq 0 ]; then
-            echo "¡Has fallado! ¡La bala ha sido disparada!"
+        if [ $acierto -eq 0 ]; then
+            echo "¡Fallaste! ¡La bala fue disparada!"
         else
-            echo "¡Has sobrevivido! ¡La bala no estaba en esta posición!"
+            echo "¡Uf! Sobreviviste esta vez."
         fi
     else
-        echo "La pistola no tiene balas en el cargador. ¡Has tenido suerte!"
+        echo "¡Uff! Parece que no había bala en el cargador. ¡Has tenido suerte!"
     fi
 else
-    echo "Respuesta no válida."
+    echo "Oh, está bien. ¡Quizás la próxima vez!"
 fi
