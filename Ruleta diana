@@ -1,31 +1,32 @@
 #!/bin/bash
 
-echo "¡Hola! Soy iceYami, bienvenido a mi perfil."
+echo "¡Hola, soy iceYami!"
 
-echo "¿Quieres jugar a un juego? (s/n)"
-read respuesta
+read -p "¿Quieres continuar? (s/n): " respuesta
 
-if [ "$respuesta" == "s" ]; then
-    echo "¡Genial! Vamos a jugar a la ruleta rusa con una pistola Beretta."
-    echo "¡Click! ¡Click! ¡Click! (suena el tambor de la pistola)"
-
-    # Simular si hay una bala o no (50/50 de probabilidad)
+if [ "$respuesta" == "n" ]; then
+    echo "¡Hasta luego!"
+    exit 0
+elif [ "$respuesta" == "s" ]; then
+    echo "Encantada de saludarte, te doy la bienvenida a mi perfil. Dispara."
+    
     bala=$(($RANDOM % 2))
     
     if [ $bala -eq 1 ]; then
-        echo "¡Oh no! ¡Había una bala en el cargador!"
+        echo "Chik, chik, ¡Bang! Había una bala, ¿has dado en la diana?"
         
-        # Generar un porcentaje de acierto aleatorio
-        acierto=$(($RANDOM % 101))
+        acierto=$(($RANDOM % 100))
         
-        if [ $acierto -eq 0 ]; then
-            echo "¡Fallaste! ¡La bala fue disparada!"
+        echo "Porcentaje de acierto: $acierto%"
+        
+        if [ $acierto -lt 80 ]; then
+            echo "Mejor suerte la próxima vez, nos vemos en otra ocasión."
         else
-            echo "¡Uf! Sobreviviste esta vez."
+            echo "Soy toda oídos"
         fi
     else
-        echo "¡Uff! Parece que no había bala en el cargador. ¡Has tenido suerte!"
+        echo "Hoy no se ha disparado ninguna bala. Nos veremos en otra ocasión."
     fi
 else
-    echo "Oh, está bien. ¡Quizás la próxima vez!"
+    echo "¿No quieres jugar según las reglas?"
 fi
